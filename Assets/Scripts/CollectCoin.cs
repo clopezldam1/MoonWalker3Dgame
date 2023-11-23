@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CollectCoin : MonoBehaviour
 {
-    [SerializeField] private MeshCollider coinTrigger;
+    //[SerializeField] private GameObject coin;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player")) 
         {
+            Destroy(gameObject); //hacer desaparecer la moneda cuando el player la toca
             ContadorCoin.coinsCollected += 1;
-            Destroy( gameObject ); //hacer desaparecer la moneda cuando el player la toca
+            ContadorCoin.anadirMonedaContador();
         }
     }
+
+  
 
     // Start is called before the first frame update
     void Start()
