@@ -19,11 +19,11 @@ public class CamFollow : MonoBehaviour
     void Update()
     {
         transform.position = player.position;
-        localRot.x += Input.GetAxis("Mouse Y") * mouseSpeed; //izquierda=negativo //derecha=positivo
-        localRot.y += Input.GetAxis("Mouse X") * mouseSpeed;
-        localRot.y = Mathf.Clamp(localRot.y, 0f, 130f);
+        localRot.x += Input.GetAxis("Mouse X") * mouseSpeed; //izquierda=negativo //derecha=positivo
+        localRot.y -= Input.GetAxis("Mouse Y") * mouseSpeed;
+        localRot.y = Mathf.Clamp(localRot.y, 0f, 80f);
 
-        Quaternion qt = Quaternion.Euler(localRot.x, localRot.y, 0f); //EL ULTIMO PARAM ES LOS GRADOS QUE GIRA LA CÁMARA (num positivo = camara se inclina hacia la derecha)
+        Quaternion qt = Quaternion.Euler(localRot.y, localRot.x, 0f); //EL ULTIMO PARAM ES LOS GRADOS QUE GIRA LA CÁMARA (num positivo = camara se inclina hacia la derecha)
         //te lo crea según la rotación del ratón (? - z no la usamos bc ratón no tiene forma de girar en z, la dejamos en 0 (para la z podríamos usar el mousewheel para hacer zoom)
         transform.rotation = Quaternion.Lerp(transform.rotation, qt, Time.deltaTime * orbitDamping); //desde punto en el que estaba cámara, qt es lo que quieres girar desde ahí y el tercer parámetro idk que es 
         
