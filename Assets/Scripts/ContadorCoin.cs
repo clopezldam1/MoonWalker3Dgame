@@ -7,19 +7,21 @@ public class ContadorCoin : MonoBehaviour
 {
     public static int coinsCollected = 0;
     [SerializeField] public GameObject[] coinsStillInMap;
+    [SerializeField] public GameObject contadorHudBox;
     public static int totalCoinsInMap;
-    [SerializeField] public static TextMeshPro contadorHUD;
+    static TextMeshPro textoContador;
 
     // Start is called before the first frame update
     void Start()
     {
-        contadorHUD = GetComponent<TextMeshPro>();
+        textoContador = contadorHudBox.GetComponent<TextMeshPro>();
         totalCoinsInMap = coinsStillInMap.Length;
+        anadirMonedaContador();
     }
 
     public static void anadirMonedaContador()
     {
-        contadorHUD.text = coinsCollected + "/" + totalCoinsInMap;
+        textoContador.text = coinsCollected + "/" + totalCoinsInMap;
     }
 
     /*
