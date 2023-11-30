@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 namespace AstronautPlayer
 {
@@ -21,18 +22,30 @@ namespace AstronautPlayer
 			rb = GetComponent<Rigidbody>();	
 		}
 
-		void Update (){
-			if (Input.GetKey("w") || Input.GetKey("s")) {
-				anim.SetInteger ("AnimationPar", 1);
-			}  else {
-				anim.SetInteger ("AnimationPar", 0);
+		void Update()
+		{
+			if (Input.GetKey("w") || Input.GetKey("s"))
+			{
+				anim.SetInteger("AnimationPar", 1);
+			}
+			else
+			{
+				anim.SetInteger("AnimationPar", 0);
 			}
 
 			float turn = Input.GetAxis("Horizontal");
-            moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
-            transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+			moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
+			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
+
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				//float jump = Input.GetAxis("Jump");
+				float jumpDistance = 100f;
+                moveDirection = transform.up * Input.GetAxis("Jump") * jumpDistance;
+                controller.Move(moveDirection * Time.deltaTime);
+            }
 		}
 	}
 }
