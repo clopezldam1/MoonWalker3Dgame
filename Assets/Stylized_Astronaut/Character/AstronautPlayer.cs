@@ -8,6 +8,7 @@ namespace AstronautPlayer
 
 		private Animator anim;
 		private CharacterController controller;
+		private Rigidbody rb;
 
 		public float speed = 600.0f;
 		public float turnSpeed = 400.0f;
@@ -15,8 +16,9 @@ namespace AstronautPlayer
 		public float gravity = 20.0f;
 
 		void Start () {
-			controller = GetComponent <CharacterController>();
-			anim = gameObject.GetComponentInChildren<Animator>();
+			controller = GetComponent<CharacterController>();
+			anim = GetComponent<Animator>();
+			rb = GetComponent<Rigidbody>();	
 		}
 
 		void Update (){
