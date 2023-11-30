@@ -6,7 +6,6 @@ TagManager:
   tags:
   - HUD
   - Coin
-  - coin
   layers:
   - Default
   - TransparentFX
