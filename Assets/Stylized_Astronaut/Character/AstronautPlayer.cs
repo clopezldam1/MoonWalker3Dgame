@@ -9,8 +9,7 @@ namespace AstronautPlayer
 
 		private Animator anim;
 		private CharacterController controller;
-		private Rigidbody rb;
-
+	
 		public float speed = 600.0f;
 		public float turnSpeed = 400.0f;
 		private Vector3 moveDirection = Vector3.zero;
@@ -19,7 +18,6 @@ namespace AstronautPlayer
 		void Start () {
 			controller = GetComponent<CharacterController>();
 			anim = GetComponent<Animator>();
-			rb = GetComponent<Rigidbody>();	
 		}
 
 		void Update()
@@ -41,7 +39,6 @@ namespace AstronautPlayer
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				//float jump = Input.GetAxis("Jump");
 				float jumpDistance = 100f;
                 moveDirection = transform.up * Input.GetAxis("Jump") * jumpDistance;
                 controller.Move(moveDirection * Time.deltaTime);
