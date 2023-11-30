@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,34 +7,26 @@ using UnityEngine;
 public class ContadorCoin : MonoBehaviour
 {
     public static int coinsCollected = 0;
-    [SerializeField] public GameObject[] coinsStillInMap;
-    [SerializeField] public GameObject contadorHudBox;
+    //[SerializeField] public GameObject[] coinsStillInMap;
+    private GameObject[] coinsStillInMap;
+    // public GameObject contadorHudBox;
     public static int totalCoinsInMap;
-    static TextMeshPro textoContador;
+    TextMeshPro textoContador;
 
     // Start is called before the first frame update
     void Start()
     {
-        textoContador = contadorHudBox.GetComponent<TextMeshPro>();
+        textoContador = GetComponent<TextMeshPro>();
+        coinsStillInMap = GameObject.FindGameObjectsWithTag("Coin");
         totalCoinsInMap = coinsStillInMap.Length;
+        print(totalCoinsInMap);
         anadirMonedaContador();
     }
 
-    public static void anadirMonedaContador()
+    public void anadirMonedaContador()
     {
-        textoContador.text = coinsCollected + "/" + totalCoinsInMap;
+        //textoContador.SetText(coinsCollected + "/" + totalCoinsInMap);
+        textoContador.text = coinsCollected + " / " + totalCoinsInMap;
     }
-
-    /*
-    public static int getCoinsCollected()
-    {
-        return coinsCollected;
-    }
-
-    public static int getTotalCoinsInMap()
-    {
-        return totalCoinsInMap;
-    }
-    */
 
 }

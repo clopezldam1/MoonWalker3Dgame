@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectCoin : MonoBehaviour
 {
-    //[SerializeField] private GameObject coin;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -12,21 +11,8 @@ public class CollectCoin : MonoBehaviour
         {
             Destroy(gameObject); //hacer desaparecer la moneda cuando el player la toca
             ContadorCoin.coinsCollected += 1;
-            ContadorCoin.anadirMonedaContador();
+            ContadorCoin contador = new ContadorCoin();
+            contador.anadirMonedaContador();
         }
-    }
-
-  
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
