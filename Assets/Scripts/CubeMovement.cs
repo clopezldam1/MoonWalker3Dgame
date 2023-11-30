@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CubeMovement : MonoBehaviour
 {
-    public float speed = 3;
+    public float speed = 30;
     private Rigidbody playerRb;
     private Vector3 moveInput;
 
@@ -20,8 +20,8 @@ public class CubeMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Jump");
         float moveZ = Input.GetAxisRaw("Vertical");
-        moveInput = new Vector3(moveX, moveY, moveZ).normalized; //.normalized para que en diagonal vaya a misma velocidad que en otras direcciones
+        moveInput = new Vector3(moveX, moveY, moveZ); 
         playerRb.AddForce(moveInput);
-        //playerRb.AddForce(moveInput);   
+
     }
 }
