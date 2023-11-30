@@ -14,10 +14,12 @@ namespace AstronautPlayer
 		public float turnSpeed = 400.0f;
 		private Vector3 moveDirection = Vector3.zero;
 		public float gravity = 20.0f;
+		private Rigidbody rb;
 
 		void Start () {
 			controller = GetComponent<CharacterController>();
 			anim = GetComponent<Animator>();
+			rb = GetComponent<Rigidbody>();
 		}
 
 		void Update()
@@ -34,15 +36,18 @@ namespace AstronautPlayer
 			float turn = Input.GetAxis("Horizontal");
 			moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-			controller.Move(moveDirection * Time.deltaTime);
-			moveDirection.y -= gravity * Time.deltaTime;
+			//controller.Move(moveDirection * Time.deltaTime);
+            moveDirection.y -= gravity * Time.deltaTime;
+            controller.Move(moveDirection * Time.deltaTime);
+            rb.AddForce(moveDirection * Time.deltaTime);
+			
 
-			if (Input.GetKeyDown(KeyCode.Space))
+			/*if (Input.GetKeyDown(KeyCode.Space))
 			{
 				float jumpDistance = 100f;
                 moveDirection = transform.up * Input.GetAxis("Jump") * jumpDistance;
                 controller.Move(moveDirection * Time.deltaTime);
-            }
+            }*/
 		}
 	}
 }
