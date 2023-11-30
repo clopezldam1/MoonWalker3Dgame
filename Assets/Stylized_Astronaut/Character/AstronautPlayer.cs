@@ -16,6 +16,11 @@ namespace AstronautPlayer
 		public float gravity = 20.0f;
 		private Rigidbody rb;
 
+		public float jumpForce;
+		public float jumpCoolDown;
+		bool readyToJump = true;
+		public KeyCode jumpKey = KeyCode.Space;
+
 		void Start () {
 			controller = GetComponent<CharacterController>();
 			anim = GetComponent<Animator>();
@@ -36,18 +41,30 @@ namespace AstronautPlayer
 			float turn = Input.GetAxis("Horizontal");
 			moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-			//controller.Move(moveDirection * Time.deltaTime);
             moveDirection.y -= gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
-            rb.AddForce(moveDirection * Time.deltaTime);
-			
-
-			/*if (Input.GetKeyDown(KeyCode.Space))
+     
+			if(Input.GetKey(jumpKey) && readyToJump)
 			{
-				float jumpDistance = 100f;
-                moveDirection = transform.up * Input.GetAxis("Jump") * jumpDistance;
-                controller.Move(moveDirection * Time.deltaTime);
-            }*/
+                print("Jump pressed 1");
+                readyToJump = false;
+				Jump();
+				Invoke(nameof(ResetJump), jumpCoolDown);
+                print("Jump pressed 2");
+            }
+		}
+
+		private void Jump()
+		{
+			rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+			controller.Move(transform.up * jumpForce);
+
+        }
+
+		private void ResetJump()
+		{
+			readyToJump = true;
 		}
 	}
 }
