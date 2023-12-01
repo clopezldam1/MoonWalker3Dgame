@@ -6,8 +6,13 @@ using UnityEngine;
 public class CoinCollection : MonoBehaviour
 {
     private int coins = 0;
-    public const int maxCoins = 10;
+    [SerializeField] public int maxCoins = 10;
     public TextMeshProUGUI contadorCoins;
+
+    private void Start()
+    {
+        setContador(coins);
+    }
 
     private void Update()
     {
@@ -22,8 +27,13 @@ public class CoinCollection : MonoBehaviour
         if (other.transform.tag == "Coin")
         {
             coins++;
-            contadorCoins.text = coins.ToString() + " / " + maxCoins.ToString();
+            setContador(coins);
             Destroy(other.gameObject);
         }
+    }
+
+    private void setContador(int coins)
+    {
+        contadorCoins.text = coins.ToString() + " / " + maxCoins.ToString();
     }
 }
