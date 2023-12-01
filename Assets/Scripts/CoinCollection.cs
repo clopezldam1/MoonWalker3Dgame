@@ -6,7 +6,7 @@ using UnityEngine;
 public class CoinCollection : MonoBehaviour
 {
     private int coins = 0;
-    [SerializeField] public int maxCoins = 10;
+    [SerializeField] public int maxCoins = 3;
     public TextMeshProUGUI contadorCoins;
     [SerializeField] GameObject audioManager;
 
