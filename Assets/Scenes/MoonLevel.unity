@@ -7342,7 +7342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00568f650c3562646ba1c0da348428c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCoins: 10
+  maxCoins: 3
   contadorCoins: {fileID: 1913629455}
   audioManager: {fileID: 851907563}
 --- !u!1660057539 &9223372036854775807
