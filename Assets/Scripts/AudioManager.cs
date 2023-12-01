@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource srcBgMusic;
     [SerializeField] AudioSource srcSfx;
     public AudioClip bgMusic;
-    public AudioClip[] sfx;
+    public AudioClip sfx_coin;
 
     private void Start()
     {
@@ -13,14 +13,21 @@ public class AudioManager : MonoBehaviour
         srcBgMusic.Play();
     }
 
+    public void PlaySfx()
+    {
+        //reproducir solo 1 vez
+        srcSfx.PlayOneShot(sfx_coin);
+    }
+
     public void PlaySfx(AudioClip sfxClip) 
     {
         //reproducir solo 1 vez
         srcSfx.PlayOneShot(sfxClip);
     }
+
     public void PlaySfx(int sfxClipIndex)
     {
         //reproducir solo 1 vez
-        srcSfx.PlayOneShot(sfx[sfxClipIndex]);
+        //srcSfx.PlayOneShot(sfx[sfxClipIndex]);
     }
 }

@@ -8,6 +8,7 @@ public class CoinCollection : MonoBehaviour
     private int coins = 0;
     [SerializeField] public int maxCoins = 10;
     public TextMeshProUGUI contadorCoins;
+    [SerializeField] GameObject audioManager;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class CoinCollection : MonoBehaviour
         {
             coins++;
             setContador(coins);
+           audioManager.GetComponent<AudioManager>().PlaySfx();
             Destroy(other.gameObject);
         }
     }
